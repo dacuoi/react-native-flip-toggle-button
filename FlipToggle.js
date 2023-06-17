@@ -41,6 +41,8 @@ class FlipToggle extends React.Component {
     sliderHeight: PropTypes.number,
     sliderRadius: PropTypes.number,
     margin: PropTypes.number,
+    marginText: PropTypes.number,
+    alignCenterText: PropTypes.bool,
     labelStyle: PropTypes.object,
     changeToggleStateOnLongPress: PropTypes.bool,
     onToggle: PropTypes.func.isRequired,
@@ -210,7 +212,11 @@ class FlipToggle extends React.Component {
           onLongPress={this.onToggleLongPress}
         >
           {this.props.onLabel || this.props.offLabel ? (
-            <Text style={[{ alignSelf: 'center' }, this.props.labelStyle]}>
+            <Text style={[{width:(this.props.buttonWidth/2), alignSelf:this.props.value ? (this.props.alignCenterText == true ? 'center' : "flex-start") : 'center' 
+            ,marginLeft:this.props.value ? this.props.marginText : this.props.sliderWidth
+            ,fontSize:this.props.value ? this.props.onFont : this.props.offFont},
+            
+             this.props.labelStyle]}>
               {this.props.value ? this.props.onLabel : this.props.offLabel}
             </Text>
           ) : null}
